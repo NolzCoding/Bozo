@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour
 {
     bool Jump = false;
     public Rigidbody2D m_Rigidbody2D;
-    private int up = 2; 
+    private int up = 3; 
     public int dashdistance = 10;
     private bool _dash = false;
     private float dir = 1f;
@@ -41,6 +41,12 @@ public class CharacterMovement : MonoBehaviour
             up = 2;
 
 
+        }
+        else if (Input.GetKeyDown("space") && up == 2)
+        {
+            Debug.Log("hi");
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -50);
+            up = 3;
         }
         if (Time.time > cooldown)
         {

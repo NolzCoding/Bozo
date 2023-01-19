@@ -7,12 +7,12 @@ TagManager:
   - Fire
   - Logs
   - Platform
-
+  - Water
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
   - 

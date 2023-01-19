@@ -30,7 +30,7 @@ public class EnemyBase : MonoBehaviour
         handleMovement();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -47,7 +47,7 @@ public class EnemyBase : MonoBehaviour
             Destroy(particleClone, 4f);
 
         }
-    }
+    }*/
 
     private void handleMovement()
     {
@@ -69,6 +69,8 @@ public class EnemyBase : MonoBehaviour
                 }
                 
             }
+            
+            
             
             if (distanceToPlayer < sprayDistance)
             {

@@ -23,7 +23,7 @@ public class TestPlayer : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(5 * x, rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && _grounded)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
 
             rb.velocity = new Vector2(rb.velocity.x, 6);
@@ -79,6 +79,17 @@ public class TestPlayer : MonoBehaviour
         _dash = true;
         yield return new WaitForSeconds(0.1f);
         _dash = false;
+    }
+    
+    public LayerMask groundLayer;
+
+    bool IsGrounded() {
+
+        if (Physics2D.Raycast(this.transform.position, Vector2.down, 1f, groundLayer.value)) {
+            return true;
+        }
+
+        return false;
     }
     
 }

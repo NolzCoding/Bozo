@@ -7,17 +7,16 @@ TagManager:
   - Fire
   - Logs
   - Platform
-
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - Enemy
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Granade
+  - Player
+  - Post
   - 
   - 
   - 

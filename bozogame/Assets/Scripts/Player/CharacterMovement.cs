@@ -97,7 +97,6 @@ public class CharacterMovement : MonoBehaviour
 
         if (_dash)
         {
-
             transform.Translate(40 * Time.deltaTime * dir, 0, 0);
 
         }

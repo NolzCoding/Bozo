@@ -4,12 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Fire
+  - Logs
   - Platform
+
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

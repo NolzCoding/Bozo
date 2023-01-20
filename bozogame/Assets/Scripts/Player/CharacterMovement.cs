@@ -16,6 +16,9 @@ public class CharacterMovement : MonoBehaviour
     private int upwardsf = 0;
     public float maxhp = 100;
     public float waterdamage = 15;
+
+    
+    
     
 
     // Start is called before the first frame update
@@ -27,26 +30,21 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
         float movex = Input.GetAxisRaw("Horizontal");
         m_Rigidbody2D.velocity = new Vector2(20 * movex, m_Rigidbody2D.velocity.y);
 
-       if (Input.GetKeyDown("space") && IsGrounded())
+       if (Input.GetKeyDown("space") && Jump==true)
         {
 
             
             m_Rigidbody2D.velocity = new Vector2(1 * movex, 20);
             up = 1;
+            Jump = false;
         }
        
-      /* if (Input.GetKeyDown("space") && Jump == true)
-        {
-            Debug.Log("go");
-            m_Rigidbody2D.velocity = new Vector2(1 * movex, 20);
-            up = 1;
-
-        }
-       */
+      
         else if (Input.GetKeyDown("space") && up == 1)
         {
             m_Rigidbody2D.velocity = new Vector2(1 * movex, 20);
@@ -86,11 +84,11 @@ public class CharacterMovement : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-
+       
     }
 
     
-
+    
 
     public void FixedUpdate()
     {
@@ -115,12 +113,27 @@ public class CharacterMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "Platform")
         {
-
             Jump = true;
-            Debug.Log("Jump");
         }
 
-        if (col.gameObject.tag == "Water")
+        
+        if (col.gameObject.tag == "Portal")
+           {
+                
+                transform.position = new Vector2(-39, -38);
+                
+
+           }
+
+ 
+           if (col.gameObject.tag == "Portal3")
+           {
+                
+                transform.position = new Vector2(9, -1);
+           }
+         
+    
+            if (col.gameObject.tag == "Water")
         {
             up = 1;
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 15);
@@ -132,7 +145,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-
+    /*
     public LayerMask groundLayer;
 
     bool IsGrounded()
@@ -145,6 +158,6 @@ public class CharacterMovement : MonoBehaviour
 
         return false;
     }
-
-
+    */
+    
 }

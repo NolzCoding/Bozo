@@ -9,14 +9,21 @@ TagManager:
   - Platform
   - Portal
   - Portal2
+  - Pickup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+
   - Player
   - Water
   - UI
   - portal2
+  - 
+  - Water
+  - UI
+  - 
+
   - 
   - 
   - 

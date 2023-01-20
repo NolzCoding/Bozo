@@ -10,20 +10,16 @@ TagManager:
   - Portal
   - Portal2
   - Pickup
+  - Enemy
+  - Powerup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-
-  - Player
-  - Water
-  - UI
-  - portal2
   - 
   - Water
   - UI
   - 
-
   - 
   - 
   - 
@@ -52,10 +48,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Player
-    uniqueID: 4257046337
-    locked: 0
-  - name: Platform
-    uniqueID: 3010531865
     locked: 0

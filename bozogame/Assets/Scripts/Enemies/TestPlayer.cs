@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestPlayer : MonoBehaviour
 {
     private float health = 200;
     private Rigidbody2D rb;
-    
+    public bool haspower = false;
     public bool _dash = false;
     [SerializeField] private float jumpForce = 7;
-    [SerializeField] private float downForce = 7;
+    [SerializeField] public float downForce = 7;
     [SerializeField] private Transform m_GroundCheck;
     [SerializeField] private LayerMask m_WhatIsGround;
     const float k_GroundedRadius = .2f;
@@ -20,11 +21,14 @@ public class TestPlayer : MonoBehaviour
     private float dir;
     private float cooldowntime = 5;
     private float cooldown = 0;
+    public ParticleSystem fire;
+    private Color startColor;
 
     [SerializeField] private GameObject charobj;
     
     void Start()
     {
+        startColor = fire.main.startColor.colorMin;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -82,10 +86,7 @@ public class TestPlayer : MonoBehaviour
 
         //transform.localScale = transform.localScale - new Vector3(0.0025f, 0.0025f, 0f);
         setSize(0.0025f);
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
     public void FixedUpdate()
@@ -110,6 +111,12 @@ public class TestPlayer : MonoBehaviour
         {
             tran.localScale = tran.localScale  -  new Vector3(size, size, 0);
         }
+
+        if (transforms[0].localScale.x < 0.1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
     }
 
     private void OnParticleCollision(GameObject other)
@@ -122,6 +129,13 @@ public class TestPlayer : MonoBehaviour
         _dash = true;
         yield return new WaitForSeconds(0.1f);
         _dash = false;
+    }
+    
+    IEnumerator DelayPowerup()
+    {
+        haspower = true; 
+        yield return new WaitForSeconds(5f);
+        haspower = false;
     }
     
     public LayerMask groundLayer;
@@ -150,7 +164,6 @@ public class TestPlayer : MonoBehaviour
                     spaces = 2;
             }
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -159,10 +172,18 @@ public class TestPlayer : MonoBehaviour
         {
             var pickupScript = col.gameObject.GetComponent<PickupAble>();
             //takeDamage(pickupScript.healthGiven);
-            setSize(0.2f);
+            setSize(-1f);
             pickupScript.onPlayerPickup();
         }
-    }
+        else if (col.gameObject.CompareTag("Powerup"))
+        {
+            Destroy(col.transform.parent.gameObject);
+            StartCoroutine(DelayPowerup());
 
+
+        }
+    }
+    
     
 }
+

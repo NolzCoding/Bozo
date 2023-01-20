@@ -76,8 +76,6 @@ public class FirstEnemy : EnemyBase
         lastreload = Time.time;
         base.Start();
         target = player.transform.Find("Target").gameObject;
-        
-
     }
 
 

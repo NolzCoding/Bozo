@@ -182,6 +182,10 @@ public class TestPlayer : MonoBehaviour
 
 
         }
+        else if (col.gameObject.CompareTag("Portal"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }
     }
     
     

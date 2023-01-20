@@ -11,11 +11,20 @@ public class Level1 : MonoBehaviour
 
     }
 
-    public void OpenScene()
+    public void Lvl1()
     {
         SceneManager.LoadScene(1);
-
-
     }
+    
+    public void Lvl2()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void Lvl3()
+    {
+        SceneManager.LoadScene(3);
+    }
+    
 
 }

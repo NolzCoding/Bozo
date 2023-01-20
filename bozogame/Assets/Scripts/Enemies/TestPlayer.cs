@@ -9,7 +9,7 @@ public class TestPlayer : MonoBehaviour
     private float health = 200;
     private Rigidbody2D rb;
     
-    private bool _dash = false;
+    public bool _dash = false;
     [SerializeField] private float jumpForce = 7;
     [SerializeField] private float downForce = 7;
     [SerializeField] private Transform m_GroundCheck;
@@ -20,6 +20,8 @@ public class TestPlayer : MonoBehaviour
     private float dir;
     private float cooldowntime = 5;
     private float cooldown = 0;
+
+    [SerializeField] private GameObject charobj;
     
     void Start()
     {
@@ -78,8 +80,8 @@ public class TestPlayer : MonoBehaviour
     {
         health -= damage;
 
-        transform.localScale = transform.localScale - new Vector3(0.0025f, 0.0025f, 0f);
-        
+        //transform.localScale = transform.localScale - new Vector3(0.0025f, 0.0025f, 0f);
+        setSize(0.0025f);
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -97,6 +99,17 @@ public class TestPlayer : MonoBehaviour
 
         }
         
+    }
+
+
+    private void setSize(float size)
+    {
+        var transforms = charobj.GetComponentsInChildren<Transform>();
+
+        foreach (var tran in transforms)
+        {
+            tran.localScale = tran.localScale  -  new Vector3(size, size, 0);
+        }
     }
 
     private void OnParticleCollision(GameObject other)
@@ -145,7 +158,8 @@ public class TestPlayer : MonoBehaviour
         if (col.gameObject.CompareTag("Pickup"))
         {
             var pickupScript = col.gameObject.GetComponent<PickupAble>();
-            takeDamage(pickupScript.healthGiven);
+            //takeDamage(pickupScript.healthGiven);
+            setSize(0.2f);
             pickupScript.onPlayerPickup();
         }
     }

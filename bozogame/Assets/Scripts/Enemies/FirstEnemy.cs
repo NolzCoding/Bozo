@@ -99,33 +99,7 @@ public class FirstEnemy : EnemyBase
 
     }
 
-    private float ProjectileCalculate()
-    {
-
-        Vector3 diff = system.transform.position - player.transform.position;
-        diff.Normalize();
-
-        var v = 3f;
-        var x = diff.x;
-        var y = diff.y;
-        var g = 0.98f;
-
-        var angle = Mathf.Atan((Mathf.Pow(v, 2) -
-                                Mathf.Sqrt(Mathf.Pow(v, 4) -
-                                           g * ((g * Mathf.Pow(x, 2)) + (2f * y * Mathf.Pow(v, 2))))) / g * x);
-
-        /*    
-        A = angle
-        v = initial velocity (m/s)
-        g = gravity (9.81)
-        x = x distance (m) - This would be 100 in your case
-        y = y vertical distance (m) - This would be 0 in your case as the target is at the same height
-        */
-
-        
-        return Mathf.Abs(angle);
-
-    }
+    
 
     private Vector3 CalucalteReleseVector()
     {

@@ -7,18 +7,18 @@ TagManager:
   - Fire
   - Logs
   - Platform
-
-  - Water
+  - Portal
+  - Portal2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
-  - Granade
-  - Player
-  - Post
+  - portal2
+  - 
+  - 
   - 
   - 
   - 
@@ -45,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 4257046337
+    locked: 0
+  - name: Platform
+    uniqueID: 3010531865
     locked: 0
